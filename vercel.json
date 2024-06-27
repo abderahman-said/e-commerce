@@ -1,7 +1,7 @@
 {
     "rewrites": [
-      { "source": "/product/:id*", "destination": "/product/[...id]/page.js" },
-      { "source": "/store/:id*", "destination": "/product/[...id]/page.js" }
+        {"source":"/(.*)" , "destination":"/" } ,
+        { "source": "/product/:id*", "destination": "/product/[...id]/page" },
+        { "source": "/store/:id*", "destination": "/product/[...id]/page" }
     ]
-  }
-  
+}
