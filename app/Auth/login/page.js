@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import styles from "../../page.module.css";
 
-import { GoToForger, GoToRegister, Userlogin } from "../../../Components/redux/reducers/AuthSlice";
+import { GoToForger, GoToRegister, Userlogin } from "../../../Components/redux/reducers/authSlice";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
@@ -68,7 +68,7 @@ const Login = () => {
           } else {
             dispatch(getUserOrderDetails(originalPromiseResult.id));
             if (originalPromiseResult.isAdmin === false) {
-              router.push("/cp");
+              router.push("/");
             } else {
               router.push("/mcp/products");
             }
@@ -148,6 +148,7 @@ const Login = () => {
           type="button"
           onClick={() => {
             dispatch(GoToRegister());
+            router.push("/Auth/Register");
           }}
         >
           انشاء حساب

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState, useEffect } from "react";
 import Accordion from "react-bootstrap/Accordion";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,7 +23,7 @@ import axios from "axios";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import { useRouter } from "next/navigation";
-import { Logout } from "./redux/reducers/AuthSlice";
+import { Logout } from "./redux/reducers/authSlice";
 
 function OffCanvasExample({ name, ...props }) {
   const [show, setShow] = useState(false);
@@ -49,34 +49,20 @@ function OffCanvasExample({ name, ...props }) {
     window.localStorage.getItem("ib_ID") !== "0"
       ? setUserId(true)
       : setUserId(false);
-  
+
     const handleScroll = () => {
       setScrollY(window.scrollY);
     };
-  
+
     window.addEventListener("scroll", handleScroll);
-  
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);  
-  
+  }, []);
 
   const isFixed = scrollY > 100;
   const router = useRouter();
-  // const Log =
-  //     !userId ? (
-  //   <Link href={"/auth"}  className={router.pathname == "/auth" ? styles.active : styles.link2} >
-  //        تسجيل الدخول
-  //   </Link>
-  // ) : (
-  //   <Link href={"/auth"}  onClick={() => {
-  //     dispatch(Logout());
-  //     window.localStorage.setItem('ib_ID' , 0)
-  //   }}   className={router.pathname == "/auth" ? styles.active : styles.link2} >
-  //       تسجيل الخروج
-  //   </Link>
-  // );
 
   useEffect(() => {
     const fetchData = async () => {
@@ -107,30 +93,24 @@ function OffCanvasExample({ name, ...props }) {
     setUserId(userId);
 
     setLocalStorageData(JSON.parse(localStorageData));
-  }, []);
+    // Update cart state based on localStorageData
+    const newCart = localStorageData ? JSON.parse(localStorageData).length : 0;
+    setCart(newCart);
+  }, [localStorageData]);
 
-  // useEffect(() => {
-  //   const handelGetOrder = getUserOrderDetailsData?.lines || [];
-  //   const AllData = getUserOrderDetailsData
-  //     ? [...localStorageData, ...handelGetOrder]
-  //     : [];
-
-  //   const newCart = userId ? AllData.length : CartsArr?.lines.length || 0;
-  //   setCart(newCart);
-  // }, [localStorageData, getUserOrderDetailsData]);
   useEffect(() => {
     const handelGetOrder = getUserOrderDetailsData?.lines || [];
     const AllData = getUserOrderDetailsData
       ? [...(localStorageData || []), ...handelGetOrder]
       : [];
 
-    const newCart = userId ? AllData.length : (CartsArr?.lines?.length || 0);
+    const newCart = userId ? AllData.length : CartsArr?.lines?.length || 0;
     setCart(newCart);
   }, [localStorageData, getUserOrderDetailsData, userId, CartsArr]);
 
-  // const cart = userId ? AllData.length : CartsArr?.lines.length;
+ 
 
-
+  console.log("userId", userId);
   return (
     <>
       <div className={`fixed-nav-div ${isFixed ? "fixed-nav" : ""}`}>
@@ -191,32 +171,35 @@ function OffCanvasExample({ name, ...props }) {
                   </div>
                 </Link>
                 <div className={styles.navleft1}>
-                  {!userId ? (
-                    <Link
-                      href={"/authentication"}
-                      className={
-                        router.pathname == "/authentication"
-                          ? styles.active
-                          : styles.link2
-                      }
-                    >
-                      تسجيل الدخول
-                    </Link>
+                  {userId ? (
+                  
+                     <Link
+                     href={"/authentication"}
+                     onClick={() => {
+                       dispatch(Logout());
+                       // router.push("/");  
+                     }}
+                     className={
+                       router.pathname == "/authentication"
+                         ? styles.active
+                         : styles.link2
+                     }
+                   >
+                     تسجيل الخروج
+                   </Link>
                   ) : (
                     <Link
-                      href={"/authentication"}
-                      onClick={() => {
-                        dispatch(Logout());
-                      }}
-                      className={
-                        router.pathname == "/authentication"
-                          ? styles.active
-                          : styles.link2
-                      }
-                    >
-                      تسجيل الخروج
-                    </Link>
+                    href={"/authentication"}
+                    className={
+                      router.pathname == "/authentication"
+                        ? styles.active
+                        : styles.link2
+                    }
+                  >
+                    تسجيل الدخول
+                  </Link>
                   )}
+
                   <div className="sala">
                     <i className="fa-regular fa-user"></i>
                   </div>

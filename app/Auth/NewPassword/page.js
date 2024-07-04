@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import styles from "../../page.module.css";
 
-import { GotoLogin } from "../../../Components/redux/reducers/AuthSlice";
+import { GotoLogin } from "../../../Components/redux/reducers/authSlice";
 import { useDispatch } from "react-redux";
 
 const NewPassword = () => {

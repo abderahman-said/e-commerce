@@ -27,6 +27,8 @@ import { InputNumber } from 'primereact/inputnumber';
 import axios from 'axios';
 import { Paginator } from 'primereact/paginator';
 import Hero_store from "../../hero_store.js"
+import Loading from "../../../Components/Loading"
+
 const LeftTabsExample = () => {
   const [searchValue, setSearchValue] = useState('');
   const [search_Value, setSearch_Value] = useState("");
@@ -204,26 +206,14 @@ const LeftTabsExample = () => {
 
 
 
-
-  if (!getFullCategoryData) {
+ if (!getFullCategoryData) {
     return (
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "55.7vh" }}>
-        <div className={styles.ui_abstergo}>
-          <div className={styles.abstergo_loader}>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-          <div className={styles.ui_text}>
-            Loading
-            <div className={styles.ui_dot}></div>
-            <div className={styles.ui_dot}></div>
-            <div className={styles.ui_dot}></div>
-          </div>
-        </div>
-      </div>
+      <Loading/> 
     );
   }
+
+
+ 
   return (
 
     < >

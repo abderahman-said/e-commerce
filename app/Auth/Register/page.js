@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { getUserOrderDetails } from "../../../Components/redux/reducers/lorem/loremSlice";
-import { GotoLogin, sign } from "../../../Components/redux/reducers/AuthSlice";
+import { GotoLogin, sign } from "../../../Components/redux/reducers/authSlice";
 import styles from "../../page.module.css";
 
 const Register = () => {

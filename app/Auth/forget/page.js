@@ -4,7 +4,7 @@ import styles from "../../page.module.css";
 
 import { useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
-import { GoToRegister, GoToSendCode } from "../../../Components/redux/reducers/AuthSlice";
+import { GoToRegister, GoToSendCode } from "../../../Components/redux/reducers/authSlice";
 
 const Forget = () => {
   const dispatch = useDispatch();

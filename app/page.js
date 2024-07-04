@@ -25,7 +25,7 @@ import {
   getClients,
 } from "../Components/redux/reducers/lorem/loremSlice";
 import LazyLoad from "react-lazy-load";
-
+import Loading from "../Components/Loading"
 import Head_sub from "./head_sub";
 
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -60,19 +60,9 @@ const Home = () => {
 
   if (!loremsData) {
     return (
-      <div className={styles.loadingContainer}>
-        <div className="ui_abstergo">
-          <div className="abstergo_loader">
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-          <div className="ui_text">Loading...</div>
-        </div>
-      </div>
+      <Loading />
     );
   }
-console.log("lorem" , loremsData)
   return (
     <Container style={{ maxWidth: "1800px" }}>
       <Row className="home-carosel">

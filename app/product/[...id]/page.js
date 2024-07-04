@@ -31,7 +31,7 @@ import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import { Toast } from "primereact/toast";
 import styles from "../../page.module.css";
-
+import Loading from "../../../Components/Loading"
 
 const About = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
@@ -100,21 +100,7 @@ const About = () => {
 
   if (!productData) {
     return (
-      <div className={styles.loadingContainer}>
-        <div className={styles.ui_abstergo}>
-          <div className={styles.abstergo_loader}>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-          <div className={styles.ui_text}>
-            Loading
-            <div className={styles.ui_dot}></div>
-            <div className={styles.ui_dot}></div>
-            <div className={styles.ui_dot}></div>
-          </div>
-        </div>
-      </div>
+      <Loading/> 
     );
   }
 

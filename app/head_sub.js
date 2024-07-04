@@ -5,6 +5,7 @@ import styles from "./page.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getSubCategories, getproductJson } from "@/Components/redux/reducers/lorem/loremSlice";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import Loading from "../Components/Loading"
  
 const Head_sub = ({ id }) => {
   const dispatch = useDispatch();
@@ -22,16 +23,7 @@ const Head_sub = ({ id }) => {
 
   if (!getSubCategoriesData) {
     return (
-      <div className={styles.loadingContainer}>
-        <div className="ui_abstergo">
-          <div className="abstergo_loader">
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-          <div className="ui_text">Loading...</div>
-        </div>
-      </div>
+      <Loading />
     );
   }
 

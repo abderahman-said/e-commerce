@@ -1,41 +1,33 @@
-import Head from "next/head";
-import Image from "next/image";
-import { Col, Container, Row } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import styles from "../page.module.css";
-import dynamic from "next/dynamic";
-
-const Forget = dynamic(() => import("../Auth/forget/page"), {
-  loading: () => <p>Loading...</p>,
-});
-const Login = dynamic(() => import("../Auth/login/page"), {
-  loading: () => <p>Loading ...</p>,
-});
-const NewPassword = dynamic(() => import("../Auth/NewPassword/page"), {
-  loading: () => <p>Loading ...</p>,
-});
-const Register = dynamic(() => import("../Auth/Register/page"), {
-  loading: () => <p>Loading ...</p>,
-});
-const ResendCode = dynamic(() => import("../Auth/ResendCode/page"), {
-  loading: () => <p>Loading ...</p>,
-});
-// RiLockPasswordFill
+// pages/authentication/page.js
+"use client";
+import React, { useEffect } from 'react';
+import { Container } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import dynamic from 'next/dynamic';
+import Loading from "../../Components/Loading"
+import { Logout } from '@/Components/redux/reducers/authSlice';
+const Forget = dynamic(() => import('../Auth/forget/page'), { loading: () => <Loading /> });
+const Login = dynamic(() => import('../Auth/login/page'), { loading: () => <Loading /> });
+const NewPassword = dynamic(() => import('../Auth/NewPassword/page'), { loading: () => <Loading /> });
+const Register = dynamic(() => import('../Auth/Register/page'), { loading: () => <Loading /> });
+const ResendCode = dynamic(() => import('../Auth/ResendCode/page'), { loading: () => <Loading /> });
+import { useRouter } from "next/navigation";
 
 const Auth = () => {
-  // const { loginn, register, forget, sendcode, newpass } = useSelector(
-  //   (state) => state.AuthSlice
-  // );
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const { loginn, register, forget, sendcode, newpass } = useSelector((state) => state.auth);
+
+
   return (
     <div className="login-content">
       <Container>
         <div className="login-main">
-       <Login />
-          {/* {loginn && <Login />} */}
-          {/* {register && <Register />}
+          {loginn && <Login />}
+          {register && <Register />}
           {forget && <Forget />}
           {sendcode && <ResendCode />}
-          {newpass && <NewPassword />} */}
+          {newpass && <NewPassword />}
         </div>
       </Container>
     </div>

@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from "react";
 import styles from "../../page.module.css";
-import { GoToNewPass, GoToRegister } from "../../../Components/redux/reducers/AuthSlice";
+import { GoToNewPass, GoToRegister } from "../../../Components/redux/reducers/authSlice";
 import { useDispatch } from "react-redux";
 
 const ResendCode = () => {
