@@ -3,18 +3,18 @@ import dynamic from "next/dynamic";
 import Loading from "../Components/Loading";
 import "./globals.css";
 import { useEffect } from "react";
-import { Providers } from "@/Components/redux/provider";
-
-const NavBar = dynamic(() => import("../Components/NavBar"), { ssr: false, loading: () => <Loading /> });
-const Footer = dynamic(() => import("../Components/Footer"), { ssr: false, loading: () => <Loading /> });
-const Header = dynamic(() => import("../Components/Header"), { ssr: false, loading: () => <Loading /> });
-
+ 
+import NavBar from "../Components/NavBar"
+import Footer from "../Components/Footer"
+import Header from "../Components/Header"
+ 
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "aos/dist/aos.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "swiper/css";
+import { Providers } from "Components/redux/provider";
 
 const Layout = ({ children }) => {
   useEffect(() => {

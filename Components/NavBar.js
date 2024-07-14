@@ -23,7 +23,7 @@ import axios from "axios";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import { useRouter } from "next/navigation";
-import { Logout } from "./redux/reducers/authSlice";
+import { Logout } from "./redux/reducers/AuthSlice";
 
 function OffCanvasExample({ name, ...props }) {
   const [show, setShow] = useState(false);
@@ -59,6 +59,15 @@ function OffCanvasExample({ name, ...props }) {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
+  }, []);
+  const handleLogout = () => {
+    dispatch(Logout());
+    console.log("Logout"  )
+  };
+
+  useEffect(() => {
+    const storedUserId = window.localStorage.getItem("ib_ID");
+    setUserId(storedUserId !== "0");
   }, []);
 
   const isFixed = scrollY > 100;
@@ -108,9 +117,6 @@ function OffCanvasExample({ name, ...props }) {
     setCart(newCart);
   }, [localStorageData, getUserOrderDetailsData, userId, CartsArr]);
 
- 
-
-  console.log("userId", userId);
   return (
     <>
       <div className={`fixed-nav-div ${isFixed ? "fixed-nav" : ""}`}>
@@ -147,7 +153,7 @@ function OffCanvasExample({ name, ...props }) {
                       <Link>
                         <LazyLoadImage
                           loading="lazy"
-                          src={`/api/images?id=${result.mainImage}`}
+                          src={`https://zayady.deltawy.com/imgs/images?id=${result.mainImage}`}
                           alt={result.name}
                           width={50}
                           height={50}
@@ -171,35 +177,22 @@ function OffCanvasExample({ name, ...props }) {
                   </div>
                 </Link>
                 <div className={styles.navleft1}>
-                  {userId ? (
-                  
-                     <Link
-                     href={"/authentication"}
-                     onClick={() => {
-                       dispatch(Logout());
-                       // router.push("/");  
-                     }}
-                     className={
-                       router.pathname == "/authentication"
-                         ? styles.active
-                         : styles.link2
-                     }
-                   >
-                     تسجيل الخروج
-                   </Link>
-                  ) : (
+                  {!userId ? (
                     <Link
-                    href={"/authentication"}
-                    className={
-                      router.pathname == "/authentication"
-                        ? styles.active
-                        : styles.link2
-                    }
-                  >
-                    تسجيل الدخول
-                  </Link>
+                      href={"/Auth/login"}
+                      className={
+                        router.pathname == "/Auth/login"
+                          ? styles.active
+                          : styles.link2
+                      }
+                    >
+                      تسجيل الدخول
+                    </Link>
+                  ) : (
+                    <div onClick={handleLogout} style={{ cursor: "pointer" }}>
+                      تسجيل الخروج
+                    </div>
                   )}
-
                   <div className="sala">
                     <i className="fa-regular fa-user"></i>
                   </div>
@@ -254,7 +247,7 @@ function OffCanvasExample({ name, ...props }) {
                   <p>{e.name}</p>
                   <LazyLoadImage
                     loading="lazy"
-                    src={`/api/images?id=${e.image}`}
+                    src={`https://zayady.deltawy.com/imgs/images?id=${e.image}`}
                     alt={e.name}
                     width={30}
                     height={30}

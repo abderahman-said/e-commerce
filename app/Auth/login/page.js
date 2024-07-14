@@ -85,6 +85,7 @@ const Login = () => {
     }
   };
   return (
+  <div className="container">
     <form>
       <ToastContainer
         position="top-center"
@@ -155,6 +156,7 @@ const Login = () => {
         </button>
       </div>
     </form>
+    </div>
   );
 };
 

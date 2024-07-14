@@ -462,7 +462,7 @@ const loremSlice = createSlice({
    },
    [getFullCategory.fulfilled]: (state, { payload }) => {
       state.loading = false;
-      state.getFullCategoryData = payload.cats;
+      state.getFullCategoryData = payload;
       state.isSuccess = true;
    },
    [getFullCategory.rejected]: (state, { payload }) => {

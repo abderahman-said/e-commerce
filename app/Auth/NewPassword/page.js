@@ -15,6 +15,8 @@ const NewPassword = () => {
   };
   return (
     <form>
+        <div className="container">
+
       <h1 className={styles.mainHeading}>انشاء كلمة سر الجديدة</h1>
       <div className={styles.inputDiv}>
         <label htmlFor="password">كلمة المرور الجديدة</label>
@@ -49,6 +51,8 @@ const NewPassword = () => {
       >
         الدخول
       </button>
+      </div>
+
     </form>
   );
 };

@@ -58,32 +58,45 @@ const Home = () => {
     setHoveredId(id);
   };
 
-  if (!loremsData) {
-    return (
-      <Loading />
-    );
-  }
+  // if (!loremsData) {
+  //   return (
+  //     <Loading />
+  //   );
+  // }
   return (
     <Container style={{ maxWidth: "1800px" }}>
       <Row className="home-carosel">
-        <Col md={3}>
-          <div className="flex-home-row">
-            <div className="back-home">
-              <h5>
-                Everyday Fresh & <br />
-                Clean with Our Products
-              </h5>
-              <button className="btn-donate  ">Donate now</button>
-            </div>
-            <div className="back-home-2 ">
-              <h3>
-                Everyday Fresh &
-                <br />
-                Clean with Our Products
-              </h3>
-              <button className="btn-donate  ">Donate now</button>
-            </div>
-          </div>
+      <Col md={2}>
+          <ul className="menu">
+            {loremsData?.cats?.map((e) => {
+              return (
+                <li key={e.id}>
+                  <div className="a">
+                    <div
+                      className="part"
+                      data-aos="fade-up"
+                      onMouseEnter={() => handleMouseEnter(e.id)}
+                    >
+                      <LazyLoadImage
+                        loading="lazy"
+                        src={`https://zayady.deltawy.com/imgs/images?id=${e.image}`}
+                        alt={e.name}
+                        width={30}
+                        height={30}
+                      />
+                      <p>{e.name}</p>
+                      </div>
+                  </div>
+
+                  <div className="megadrop">
+                    <div className="col">
+                      <Head_sub id={hoveredId} />
+                    </div>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
         </Col>
         <Col md={7} className="position-relative">
           <Carousel
@@ -117,38 +130,26 @@ const Home = () => {
             </Carousel.Item>
           </Carousel>
         </Col>
-        <Col md={2}>
-          <ul className="menu">
-            {loremsData?.cats?.map((e) => {
-              return (
-                <li key={e.id}>
-                  <div className="a">
-                    <div
-                      className="part"
-                      data-aos="fade-up"
-                      onMouseEnter={() => handleMouseEnter(e.id)}
-                    >
-                      <p>{e.name}</p>
-                      <LazyLoadImage
-                        loading="lazy"
-                        src={`/api/images?id=${e.image}`}
-                        alt={e.name}
-                        width={30}
-                        height={30}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="megadrop">
-                    <div className="col">
-                      <Head_sub id={hoveredId} />
-                    </div>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
+        <Col md={3}>
+          <div className="flex-home-row">
+            <div className="back-home">
+              <h5>
+                Everyday Fresh & <br />
+                Clean with Our Products
+              </h5>
+              <button className="btn-donate  ">Donate now</button>
+            </div>
+            <div className="back-home-2 ">
+              <h3>
+                Everyday Fresh &
+                <br />
+                Clean with Our Products
+              </h3>
+              <button className="btn-donate  ">Donate now</button>
+            </div>
+          </div>
         </Col>
+       
       </Row>
 
       <div className={styles.home_main}>
@@ -197,7 +198,7 @@ const Home = () => {
                   <div className="card-cat">
                     <LazyLoadImage
                       loading="lazy"
-                      src={`/api/images?id=${e.image}`}
+                      src={`https://zayady.deltawy.com/imgs/images?id=${e.image}`}
                       alt={e.name}
                       width={100}
                       height={100}
@@ -256,7 +257,7 @@ const Home = () => {
                   <div className="flex-product" data-aos="fade-up">
                     <LazyLoadImage
                       loading="lazy"
-                      src={`/api/images?id=${
+                      src={`https://zayady.deltawy.com/imgs/images?id=${
                         e.imgs.imgs.find((img) => img.main)?.small
                       }`}
                       alt={e.name}
@@ -287,7 +288,7 @@ const Home = () => {
               <div className={styles.coffetwo}>
                 <LazyLoadImage
                   loading="lazy"
-                  src={`/api/images?id=${e.verticalImage}`}
+                  src={`https://zayady.deltawy.com/imgs/images?id=${e.verticalImage}`}
                   alt={e.name}
                   width={67600}
                   height={67600}
@@ -300,7 +301,7 @@ const Home = () => {
                 <Col md={3}>
                   <LazyLoadImage
                     loading="lazy"
-                    src={`/api/images?id=${e.horizontalImage}`}
+                    src={`https://zayady.deltawy.com/imgs/images?id=${e.horizontalImage}`}
                     alt={e.name}
                     width={67600}
                     height={67600}
@@ -341,7 +342,7 @@ const Home = () => {
                         >
                           <LazyLoadImage
                             loading="lazy"
-                            src={`/api/images?id=${product.image}`}
+                            src={`https://zayady.deltawy.com/imgs/images?id=${product.image}`}
                             alt={e.name}
                             width={100}
                             height={100}
@@ -413,7 +414,7 @@ const Home = () => {
                     <div className="flex-product-img" data-aos="fade-up">
                       <LazyLoadImage
                         loading="lazy"
-                        src={`/api/images?id=${e.image}`}
+                        src={`https://zayady.deltawy.com/imgs/images?id=${e.image}`}
                         alt={e.name}
                         width={100}
                         height={100}
@@ -477,7 +478,7 @@ const Home = () => {
                   <div className="card-cat">
                     <LazyLoadImage
                       loading="lazy"
-                      src={`/api/images?id=${e.image}`}
+                      src={`https://zayady.deltawy.com/imgs/images?id=${e.image}`}
                       alt={e.name}
                       width={100}
                       height={100}

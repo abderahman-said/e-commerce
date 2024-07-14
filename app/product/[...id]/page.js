@@ -98,11 +98,11 @@ const About = () => {
     dispatch(getUserOrderDetails(ID));
   };
 
-  if (!productData) {
-    return (
-      <Loading/> 
-    );
-  }
+  // if (!productData) {
+  //   return (
+  //     <Loading/> 
+  //   );
+  // }
 
   return (
     <Container style={{ maxWidth: "1800px" }}>
@@ -205,8 +205,8 @@ const About = () => {
                   <SwiperSlide key={index}>
                     <Image
                       loading="lazy"
-                      src={`/api/images?id=${image.medium}`}
-                      zoomSrc={`/api/images?id=${image.large}`}
+                      src={`https://zayady.deltawy.com/imgs/images?id=${image.medium}`}
+                      zoomSrc={`https://zayady.deltawy.com/imgs/images?id=${image.large}`}
                       alt="Image"
                       width="auto"
                       height="auto"
@@ -231,7 +231,7 @@ const About = () => {
                       loading="lazy"
                       alt=""
                       style={{ boxShadow: "0 0 50px #f3f2f2", borderRadius: "1.4pc" }}
-                      src={`/api/images?id=${image.small}`}
+                      src={`https://zayady.deltawy.com/imgs/images?id=${image.small}`}
                       width={90}
                       height={80}
                     />

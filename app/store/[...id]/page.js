@@ -147,7 +147,7 @@ const LeftTabsExample = () => {
     dispatch(getUserOrderDetails(ID));
   };
   function renderCategories() {
-    return getFullCategoryData?.map((cat, id) => (
+    return getFullCategoryData?.cats?.map((cat, id) => (
       <div key={id} className={styles.article_blogs}>
         {renderProducts(cat)}
       </div>
@@ -161,7 +161,7 @@ const LeftTabsExample = () => {
       <div className="card-store" key={id} data-aos="fade-up" onClick={() => handleShow(product.id, product.name, product.image, product.catId)}>
         {/* <Link  key={product.catId} href={`/product/${product.id}`}  as={`/product/${product.id}/${encodeURIComponent(product.name.replace(/\s+/g, '-'))}`}> */}
         <div className='img'>
-          <LazyLoadImage src={`/api/images?id=${product.image}`} alt={product.name} width={200} height={200} />
+          <LazyLoadImage src={`https://zayady.deltawy.com/imgs/images?id=${product.image}`} alt={product.name} width={200} height={200} />
         </div>
         {/* </Link> */}
         <div className='div-back-top' >
@@ -206,11 +206,11 @@ const LeftTabsExample = () => {
 
 
 
- if (!getFullCategoryData) {
-    return (
-      <Loading/> 
-    );
-  }
+//  if (!getFullCategoryData) {
+//     return (
+//       <Loading/> 
+//     );
+//   }
 
 
  
@@ -253,7 +253,7 @@ const LeftTabsExample = () => {
 
               </div>
             </div>
-            <Image src={`/api/images?id=${selectedProduct.image}`} zoomSrc={`/api/images?id=${selectedProduct.image}`} alt="Image" width="auto" height="auto" preview />
+            <Image src={`https://zayady.deltawy.com/imgs/images?id=${selectedProduct.image}`} zoomSrc={`https://zayady.deltawy.com/imgs/images?id=${selectedProduct.image}`} alt="Image" width="auto" height="auto" preview />
           </div>
           {/* <Link className='add-cart' key={selectedProduct.id} href={`/product/${selectedProduct.id}`} as={`/product/${selectedProduct.id}/${encodeURIComponent(selectedProduct.name.replace(/\s+/g, '-'))}`} >
               صفحه المنتج
@@ -313,7 +313,7 @@ const LeftTabsExample = () => {
                   <div  className="card-cat brands" data-aos="fade-up" onClick={() => handleBrand(brand.id) }  >
                    {/* <Link href={`/store/id/${brand.id}`} as={`/store/${brand.id}/${encodeURIComponent(brand.name.replace(/\s+/g, '-'))}`} >   */}
                       <div className='img-store-div' >
-                        <LazyLoadImage loading="lazy" src={`/api/images?id=${brand.image}`} alt={brand.name} width={70} height={50} />
+                        <LazyLoadImage loading="lazy" src={`https://zayady.deltawy.com/imgs/images?id=${brand.image}`} alt={brand.name} width={70} height={50} />
                       </div>
                       <h6>{brand.name}</h6>
                     {/* </Link>   */}

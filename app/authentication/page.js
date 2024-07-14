@@ -1,23 +1,26 @@
-// pages/authentication/page.js
-"use client";
-import React, { useEffect } from 'react';
+"use client"
+// Auth.js
+import React, { useState } from 'react';
 import { Container } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
 import dynamic from 'next/dynamic';
-import Loading from "../../Components/Loading"
-import { Logout } from '@/Components/redux/reducers/authSlice';
-const Forget = dynamic(() => import('../Auth/forget/page'), { loading: () => <Loading /> });
-const Login = dynamic(() => import('../Auth/login/page'), { loading: () => <Loading /> });
-const NewPassword = dynamic(() => import('../Auth/NewPassword/page'), { loading: () => <Loading /> });
-const Register = dynamic(() => import('../Auth/Register/page'), { loading: () => <Loading /> });
-const ResendCode = dynamic(() => import('../Auth/ResendCode/page'), { loading: () => <Loading /> });
-import { useRouter } from "next/navigation";
+import Loading from "../../Components/Loading";
+
+import Forget from "../Auth/forget/page"
+import Login from "../Auth/login/page"
+import NewPassword from "../Auth/NewPassword/page"
+import Register from "../Auth/Register/page"
+import ResendCode from "../Auth/ResendCode/page"
 
 const Auth = () => {
-  const dispatch = useDispatch();
-  const router = useRouter();
-  const { loginn, register, forget, sendcode, newpass } = useSelector((state) => state.auth);
+  const [authState, setAuthState] = useState({
+    loginn: true,
+    register: false,
+    forget: false,
+    sendcode: false,
+    newpass: false,
+  });
 
+  const { loginn, register, forget, sendcode, newpass } = authState;
 
   return (
     <div className="login-content">

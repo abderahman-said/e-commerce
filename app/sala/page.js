@@ -87,7 +87,7 @@ const Sala = () => {
           <div className="item_info_container">
             <div className="Card_image">
               <LazyLoadImage
-                src={`/api/images?id=${ele.image}`}
+                src={`https://zayady.deltawy.com/imgs/images?id=${ele.image}`}
                 alt={ele.productName}
                 width={150}
                 height={150}
@@ -110,7 +110,7 @@ const Sala = () => {
           <div className="item_info_container">
             <div className="Card_image">
               <LazyLoadImage
-                src={`/api/images?id=${ele.image}`}
+                src={`https://zayady.deltawy.com/imgs/images?id=${ele.image}`}
                 alt={ele.name}
                 width={150}
                 height={150}

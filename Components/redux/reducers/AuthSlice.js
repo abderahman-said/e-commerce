@@ -1,80 +1,130 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const Url = "https://zayady.deltawy.com";
-
-// Thunks definitions
-export const sign = createAsyncThunk("auth/register", async (res, thunkAPI) => {
+ const Url = "https://zayady.deltawy.com";
+    // const Url = "http://192.168.0.201:8080/zayady"; 
+// sign
+export const sign = createAsyncThunk("auth/registre", async (res, thunkAPI) => {
+  const { rejectWithValue } = thunkAPI;
   try {
-    const response = await axios.post(`${Url}/rest/test.product/sign`, res);
-    const { data } = response;
-    // Assuming data structure for response contains mail, UserName, UserID, ISAdmin
-    window.localStorage.setItem("ib_mail", data.mail);
-    window.localStorage.setItem("ib_Name", data.UserName);
-    window.localStorage.setItem("ib_ID", data.UserID);
-    window.localStorage.setItem("ib_Admin", data.ISAdmin);
-    window.localStorage.setItem("ib_pass", res.password);
+    const data = await axios
+      .post(`${Url}/rest/test.product/sign`, {
+        ...res,
+      })
+      .then((res) => {
+        const { data } = res;
+        window.localStorage.setItem("ib_mail", data.mail);
+        window.localStorage.setItem("ib_Name", data.UserName);
+        window.localStorage.setItem("ib_ID", data.UserID);
+        window.localStorage.setItem("ib_Admin", data.ISAdmin);
+        window.localStorage.setItem("ib_pass", res.password);
+        return data;
+      });
+
+    // ib_pass
     return data;
   } catch (err) {
-    return thunkAPI.rejectWithValue(err.message);
+    return rejectWithValue(err.message);
   }
 });
 
-export const Userlogin = createAsyncThunk("auth/Userlogin", async (res, thunkAPI) => {
-  try {
-    const response = await axios.post(`${Url}/rest/test.product/loginn/`, res);
-    const { data } = response;
-    if (!data.Errors || data.Errors.length === 0) {
-      window.localStorage.setItem("ib_mail", data.email);
-      window.localStorage.setItem("ib_Name", res.name);
-      window.localStorage.setItem("ib_ID", data.id);
-      window.localStorage.setItem("ib_Admin", data.isAdmin);
-      window.localStorage.setItem("ib_pass", res.password);
+// login
+export const Userlogin = createAsyncThunk(
+  "auth/Userlogin",
+  async (res, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
+    try {
+      const data = await axios
+        .post(`${Url}/rest/test.product/loginn/`, {
+          ...res,
+        })
+        .then((res) => {
+          const { data } = res;
+          console.log(res);
+          if (!data.Errors || data.Errors.length === 0) {
+            window.localStorage.setItem("ib_mail", data.email);
+            window.localStorage.setItem("ib_Name", res.name);
+            window.localStorage.setItem("ib_ID", data.id);
+            window.localStorage.setItem("ib_Admin", data.isAdmin);
+            window.localStorage.setItem("ib_pass", res.password);
+          }
+          return data;
+        });
+
+      return data;
+    } catch (err) {
+      return rejectWithValue(err.message);
     }
-    return data;
-  } catch (err) {
-    return thunkAPI.rejectWithValue(err.message);
   }
-});
-
-export const getUserInfo = createAsyncThunk("auth/getUserInfo", async (id, thunkAPI) => {
-  try {
-    const response = await axios.post(`${Url}/rest/test.product/getUserInfo`, { id });
-    return response.data;
-  } catch (err) {
-    return thunkAPI.rejectWithValue(err.message);
+);
+export const getUserInfo = createAsyncThunk(
+  "auth/getUserInfo",
+  async (id, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
+    try {
+      const data = await axios
+        .post(`${Url}/rest/test.product/getUserInfo`, {
+          id,
+        })
+        .then((res) => res.data);
+      return data;
+    } catch (err) {
+      return rejectWithValue(err.message);
+    }
   }
-});
-
-export const saveUserInfo = createAsyncThunk("auth/saveUserInfo", async (res, thunkAPI) => {
-  try {
-    const response = await axios.post(`${Url}/rest/test.product/saveUserInfo?timestamp=${new Date().getTime()}`, res);
-    return response.data;
-  } catch (err) {
-    return thunkAPI.rejectWithValue(err.message);
+);
+// http://localhost:8080/mohamedibrahim/rest/test.product/saveUserInfo
+export const saveUserInfo = createAsyncThunk(
+  "auth/saveUserInfo",
+  async (res, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
+    try {
+      const data = await axios
+        .post(`${Url}/rest/test.product/saveUserInfo?timestamp=${new Date().getTime()}`, {
+          ...res,
+        })
+        .then((res) => res.data);
+      return data;
+    } catch (err) {
+      return rejectWithValue(err.message);
+    }
   }
-});
+);
 
-export const updateUserInfo = createAsyncThunk("auth/updateUserInfo", async (res, thunkAPI) => {
-  try {
-    const response = await axios.post(`${Url}/rest/test.product/UpdateUserInfo`, res);
-    return response.data;
-  } catch (err) {
-    return thunkAPI.rejectWithValue(err.message);
+export const updateUserInfo = createAsyncThunk(
+  "auth/updateUserInfo",
+  async (res, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
+    try {
+      const data = await axios
+        .post(`${Url}/rest/test.product/UpdateUserInfo`, {
+          ...res,
+        })
+        .then((res) => res.data);
+      return data;
+    } catch (err) {
+      return rejectWithValue(err.message);
+    }
   }
-});
+);
 
-export const saveMessage = createAsyncThunk("auth/saveMessage", async (res, thunkAPI) => {
-  try {
-    const response = await axios.post(`${Url}/rest/test.product/saveMessage`, res);
-    return response.data;
-  } catch (err) {
-    return thunkAPI.rejectWithValue(err.message);
+export const sevaMessage = createAsyncThunk(
+  "auth/sevaMessage",
+  async (res, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
+    try {
+      const data = await axios
+        .post(`${Url}/rest/test.product/saveMessage`, {
+          ...res,
+        })
+        .then((res) => res.data);
+      return data;
+    } catch (err) {
+      return rejectWithValue(err.message);
+    }
   }
-});
-
-// Redux slice
-const authSlice = createSlice({
+);
+const AuthSlice = createSlice({
   name: "auth",
   initialState: {
     isLoading: false,
@@ -84,77 +134,100 @@ const authSlice = createSlice({
     forget: false,
     sendcode: false,
     newpass: false,
-    userInfo: null,   
+    userInfo: null,
+    // message
   },
   reducers: {
-    GotoLogin: (state) => {
+    GotoLogin: (state, action) => {
       state.loginn = true;
       state.register = false;
       state.forget = false;
       state.sendcode = false;
       state.newpass = false;
     },
-    GoToRegister: (state) => {
+    GoToRegister: (state, action) => {
       state.register = true;
       state.loginn = false;
       state.forget = false;
       state.sendcode = false;
       state.newpass = false;
     },
-    GoToForget: (state) => {
+    GoToForger: (state, action) => {
+      state.register = false;
+      state.loginn = false;
       state.forget = true;
-      state.loginn = false;
-      state.register = false;
       state.sendcode = false;
       state.newpass = false;
     },
-    GoToSendCode: (state) => {
+    GoToSendCode: (state, action) => {
+      state.register = false;
+      state.loginn = false;
+      state.forget = false;
       state.sendcode = true;
-      state.loginn = false;
-      state.register = false;
-      state.forget = false;
       state.newpass = false;
     },
-    GoToNewPass: (state) => {
-      state.newpass = true;
-      state.loginn = false;
+    GoToNewPass: (state, action) => {
       state.register = false;
+      state.loginn = false;
       state.forget = false;
       state.sendcode = false;
+      state.newpass = true;
     },
     Logout: (state) => {
-      window.localStorage.clear();   
-      state.userInfo = null;   
-      state.loginn = true;
-      state.register = false;
-      state.forget = false;
-      state.sendcode = false;
-      state.newpass = false;
+      state.userInfo = null;
+      window.localStorage.removeItem("ib_mail");
+      window.localStorage.removeItem("ib_Name");
+      window.localStorage.removeItem("ib_ID");
+      window.localStorage.removeItem("ib_Admin");
+      window.localStorage.removeItem("ib_pass");
+    }
+  },
+  extraReducers: {
+    // sign
+
+    [sign.fulfilled]: (state, action) => {
+      state.userInfo = action.payload;
+      // console.log(action);
+    },
+    // login
+
+    [Userlogin.fulfilled]: (state, action) => {
+      state.userInfo = action.payload;
+      // console.log(action);
+    },
+
+    // getUserInfo
+
+    [getUserInfo.fulfilled]: (state, action) => {
+      state.userInfo = action.payload;
+      // console.log(action);
+    },
+
+    [updateUserInfo.fulfilled]: (state, action) => {
+      state.userInfo = action.payload;
+      // console.log(action);
+    },
+
+    // saveUserInfo
+
+    [saveUserInfo.fulfilled]: (state, action) => {
+      state.userInfo = action.payload;
+      // console.log(action);
+    },
+    // sevaMessage
+    [sevaMessage.fulfilled]: (state, action) => {
+      // state.userInfo = action.payload;
+      console.log(action);
     },
   },
-  extraReducers: (builder) => {
-    builder
-      .addCase(sign.fulfilled, (state, action) => {
-        state.userInfo = action.payload;
-      })
-      .addCase(Userlogin.fulfilled, (state, action) => {
-        state.userInfo = action.payload;
-      })
-      .addCase(getUserInfo.fulfilled, (state, action) => {
-        state.userInfo = action.payload;
-      })
-      .addCase(updateUserInfo.fulfilled, (state, action) => {
-        state.userInfo = action.payload;
-      })
-      .addCase(saveUserInfo.fulfilled, (state, action) => {
-        state.userInfo = action.payload;
-      })
-      .addCase(saveMessage.fulfilled, (state, action) => {
-        console.log(action);
-      });
-  },
 });
+export const {
+  GotoLogin,
+  GoToRegister,
+  GoToForger,
+  GoToSendCode,
+  GoToNewPass,
+  Logout,
+} = AuthSlice.actions;
 
-export const { GotoLogin, GoToRegister, GoToForget, GoToSendCode, GoToNewPass, Logout } = authSlice.actions;
-
-export default authSlice.reducer;
+export default AuthSlice.reducer;

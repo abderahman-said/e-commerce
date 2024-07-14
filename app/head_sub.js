@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./page.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getSubCategories, getproductJson } from "@/Components/redux/reducers/lorem/loremSlice";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+ import { LazyLoadImage } from "react-lazy-load-image-component";
 import Loading from "../Components/Loading"
+import { getproductJson, getSubCategories } from "Components/redux/reducers/lorem/loremSlice";
  
 const Head_sub = ({ id }) => {
   const dispatch = useDispatch();
@@ -21,11 +21,11 @@ const Head_sub = ({ id }) => {
   //   dispatch(getproductJson({ id }));
   // }, [dispatch, id]);
 
-  if (!getSubCategoriesData) {
-    return (
-      <Loading />
-    );
-  }
+  // if (!getSubCategoriesData) {
+  //   return (
+  //     <Loading />
+  //   );
+  // }
 
   return (
     <div className={styles.head_sub}>
@@ -44,7 +44,7 @@ const Head_sub = ({ id }) => {
               <LazyLoadImage
                       loading="lazy"
                       alt={cata.name}
-                      src={`/api/images?id=${cata.image}`}
+                      src={`https://zayady.deltawy.com/imgs/images?id=${cata.image}`}
                       width={170}
                       height={170}
                     />

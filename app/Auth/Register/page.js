@@ -89,6 +89,8 @@ const Register = () => {
 
   return (
     <form>
+        <div className="container">
+
       <ToastContainer
         position="top-center"
         autoClose={1000}
@@ -166,6 +168,8 @@ const Register = () => {
           تسجيل الدخول
         </button>
       </div>
+      </div>
+
     </form>
   );
 };
